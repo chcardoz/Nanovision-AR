@@ -152,8 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b527ddba7a7c1344bc3e11f152fa659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followingObjects: []
-  circleRadius: 0
+  followingObjects:
+  - {fileID: 4338945926030753869, guid: e8c70aa2f54e0fe47865c7a207862d5b, type: 3}
+  - {fileID: 4338945926030753869, guid: e8c70aa2f54e0fe47865c7a207862d5b, type: 3}
+  - {fileID: 4338945926030753869, guid: e8c70aa2f54e0fe47865c7a207862d5b, type: 3}
+  - {fileID: 4338945926030753869, guid: e8c70aa2f54e0fe47865c7a207862d5b, type: 3}
+  circleRadius: 1
 --- !u!4 &335668039
 Transform:
   m_ObjectHideFlags: 0
@@ -386,7 +390,7 @@ Transform:
   m_GameObject: {fileID: 1091204776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 424434369}
   m_Father: {fileID: 0}
