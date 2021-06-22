@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -164,7 +164,7 @@ Transform:
   m_GameObject: {fileID: 174812847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 614781266}
   m_Father: {fileID: 0}
@@ -532,11 +532,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1813736475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2d2b17314256034aab20ceda40a72c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 00b613556070a4730bdda5cf7c9a101a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 2014867059}
-  objectToPlace: {fileID: 6314822104424582017, guid: 0cc4506d5315862478d73579e10c888d, type: 3}
+  objectsToPlace:
+  - {fileID: 6314822104424582017, guid: 0cc4506d5315862478d73579e10c888d, type: 3}
+  - {fileID: 5159760614283459372, guid: 1f9b56223969c894a896e87914f94e84, type: 3}
+  - {fileID: 919132149155446097, guid: 79b52d95d6a985f429548f2c85adfd97, type: 3}
+  - {fileID: 874766212573400241, guid: 81f3696dc779e4c4084d5fdebda9af0e, type: 3}
+  - {fileID: 3156982947216544659, guid: fcec35c7effe54d4e9a93a2215841dd3, type: 3}
+  - {fileID: 5708589317683326018, guid: 74ce7d54f7cb2904fa069268b3a58ea0, type: 3}
+  - {fileID: 5159435160580433568, guid: 59d978ad48551c74e8301ff19b995be7, type: 3}
+  - {fileID: 5883826991015213340, guid: 6585d75761500874c959e741ae02b3b7, type: 3}
+  - {fileID: 2112665628857522347, guid: cbd46484b1d286a4683b465ae9d3ae74, type: 3}
+  - {fileID: 8363104656829522311, guid: 4873ce49006360d4eb6653d541129a3e, type: 3}
 --- !u!4 &1813736477
 Transform:
   m_ObjectHideFlags: 0
@@ -576,7 +586,7 @@ Transform:
   m_GameObject: {fileID: 2014867059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 516672846}
   m_Father: {fileID: 0}

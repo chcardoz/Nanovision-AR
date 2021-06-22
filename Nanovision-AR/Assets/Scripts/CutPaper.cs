@@ -6,65 +6,48 @@ using UnityEngine.Experimental.XR;
 using UnityEngine.XR.ARSubsystems;
 using System;
 
-
-public class TapToPlaceObject : MonoBehaviour
-
+public class CutPaper : MonoBehaviour
 {
 
-	
-
-	int counter = 0;
 	private ARRaycastManager aRRaycastManager;  //handles raycasts
 	private Pose placementPose;
 	private bool placementPoseIsValid = false;
+	private bool objectIsPlaced = false;
 	static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
-	[SerializeField]
-	GameObject placementIndicator;
+	[SerializeField] GameObject placementIndicator;
+	[SerializeField]  List<GameObject> objectsToPlace = new List<GameObject>();
 
-	GameObject placedObjects;
+	private int item_idx = 0;
+	public int Item_idx
+    {
+		get { return item_idx;  }
+		set
+        {
+			item_idx = value;
+			ReplaceObject();
+        }
+    }
 
-	[SerializeField]
-	GameObject objectToPlace;
 	void Start()
 	{
-		placedObjects = null;
 		aRRaycastManager = FindObjectOfType<ARRaycastManager>();
 	}
 
 	void Update()
 	{
-	//	Boolean keepGoing = true;
-		//int counter = 0;
-		UpdatePlacementPose();
-		UpdatePlacementIndicator();
-	//	while(keepGoing) {
-			if(placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
-					
-				PlaceObject();
-			//	keepGoing = false;	
-				//counter++;
-				
-				//}
+        if (!objectIsPlaced)
+        {
+			UpdatePlacementPose();
+			UpdatePlacementIndicator();
 		}
 
-	}
-	public void PlaceObject() {
-		//int counter = 0;
-		if(isPlaced()) {
-			Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
-			counter++;
-		}	
-		//}
-		
-	}
-	private bool isPlaced() {
-		if (counter == 0) {
-			return true;
-		} else {
-			return false;
+		if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+		{
+			objectIsPlaced = true;
+			placementIndicator.SetActive(false);
+			Item_idx += 1;
 		}
-
 	}
 
 	private void UpdatePlacementIndicator()
@@ -82,16 +65,25 @@ public class TapToPlaceObject : MonoBehaviour
 
 	private void UpdatePlacementPose()
 	{
-		var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+		var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
 		aRRaycastManager.Raycast(screenCenter, s_Hits, TrackableType.Planes);
 
 		placementPoseIsValid = s_Hits.Count > 0;
 		if (placementPoseIsValid)
 		{
 			placementPose = s_Hits[0].pose;
-			var cameraForward = Camera.current.transform.forward;
+			var cameraForward = Camera.main.transform.forward;
 			var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
 			placementPose.rotation = Quaternion.LookRotation(cameraBearing);
 		}
 	}
+
+	public void ReplaceObject()
+    {
+		if(Item_idx > 0)
+        {
+			Destroy(objectsToPlace[Item_idx-1]);
+			Instantiate(objectsToPlace[Item_idx], placementPose.position, placementPose.rotation);
+        }
+    }
 }
