@@ -3,39 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using System;
-using UnityEngine.Experimental.XR;
 using UnityEngine.XR.ARSubsystems;
 
 public class FollowPlayer : MonoBehaviour
 {
-	[SerializeField] List<GameObject> followingObjects;
-	[SerializeField] float circleRadius;
+        
+	[SerializeField] List<GameObject> followingObjects = new List<GameObject>();
+    [SerializeField] GameObject placementIndicator;
+    [SerializeField] float offset;
 
-	private List<Vector3> outvectors;
-	private int numObjects;
-	private Vector3 cameraPosition;
+
+    //Raycast stuff
+    private ARRaycastManager aRRaycastManager;
+    static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+
+    private bool objectPlacedOnce = false;
+    private bool placementPoseIsValid = false;
+    private Pose placementPose;
+
 	void Start()
 	{
-		numObjects = followingObjects.Count;
-		cameraPosition = Camera.main.transform.position;
-		float angle = 360f / (float)numObjects;
-		for (int i = 0; i < numObjects; i++)
-		{
-			Quaternion rotation = Quaternion.AngleAxis(i * angle, Vector3.up);
-			Vector3 startOrientation = Vector3.forward;
-			Vector3 direction = rotation * startOrientation;
-			outvectors[i] = direction * circleRadius;
-			Vector3 position = cameraPosition + outvectors[i];
-			Instantiate(followingObjects[i], position, rotation);
-		}
-	}
+        aRRaycastManager = FindObjectOfType<ARRaycastManager>();
+    }
 
-	void Update()
-	{
-		cameraPosition = Camera.main.transform.position;
-		for (int i = 0; i < numObjects; i++)
-		{
-			followingObjects[i].transform.position = cameraPosition + outvectors[i];
-		}
-	}
+    void Update()
+    {
+        if (!objectPlacedOnce)
+        {
+            UpdatePlacementPose();
+            UpdatePlacementIndicator();
+            if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                PlaceObject();
+                objectPlacedOnce = true;
+                placementIndicator.SetActive(false);
+            }
+        }
+    }
+
+    private void UpdatePlacementIndicator()
+    {
+        if (placementPoseIsValid)
+        {
+            placementIndicator.SetActive(true);
+            placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+        }
+        else
+        {
+            placementIndicator.SetActive(false);
+        }
+    }
+
+    private void UpdatePlacementPose()
+    {
+        var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        aRRaycastManager.Raycast(screenCenter, s_Hits, TrackableType.Planes);
+
+        placementPoseIsValid = s_Hits.Count > 0;
+        if (placementPoseIsValid)
+        {
+            placementPose = s_Hits[0].pose;
+            var cameraForward = Camera.main.transform.forward;
+            var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+            placementPose.rotation = Quaternion.LookRotation(cameraBearing);
+        }
+    }
+
+    private void PlaceObject()
+    {
+        int numObjects = followingObjects.Count;
+        for(int i =0; i<numObjects; i++)
+        {
+            Vector3 position = new Vector3(placementPose.position.x + offset * i, placementPose.position.y, placementPose.position.z);
+            Instantiate(followingObjects[i], position, placementPose.rotation);
+        }
+    }
 }
