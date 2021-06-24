@@ -8,29 +8,38 @@ using System;
 
 public class CutPaper : MonoBehaviour
 {
-
-	private ARRaycastManager aRRaycastManager;  //handles raycasts
+	// To handles raycasts
+	private ARRaycastManager aRRaycastManager;  
 	private Pose placementPose;
 	private bool placementPoseIsValid = false;
-	private bool objectIsPlaced = false;
+	public static bool objectIsPlaced = false;
 	static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
 	[SerializeField] GameObject placementIndicator;
 	[SerializeField]  List<GameObject> objectsToPlace = new List<GameObject>();
+	private int rangeObjectList;
+	private GameObject spawnedObject;
 
-	private int item_idx = 0;
+	public static int numCuts;
+	private int item_idx;
 	public int Item_idx
     {
 		get { return item_idx;  }
 		set
         {
 			item_idx = value;
-			ReplaceObject();
+			if(item_idx < rangeObjectList)
+            {
+				ReplaceObject();
+			}
         }
     }
 
 	void Start()
 	{
+		Item_idx = 0;
+		numCuts = 0;
+		rangeObjectList = objectsToPlace.Count;
 		aRRaycastManager = FindObjectOfType<ARRaycastManager>();
 	}
 
@@ -40,13 +49,6 @@ public class CutPaper : MonoBehaviour
         {
 			UpdatePlacementPose();
 			UpdatePlacementIndicator();
-		}
-
-		if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-		{
-			objectIsPlaced = true;
-			placementIndicator.SetActive(false);
-			Item_idx += 1;
 		}
 	}
 
@@ -78,12 +80,24 @@ public class CutPaper : MonoBehaviour
 		}
 	}
 
+
+	public void Cut()
+    {
+		if (placementPoseIsValid)
+		{
+			placementIndicator.SetActive(false);
+			Item_idx += 1;
+			numCuts += 1;
+		}
+	}
+
 	public void ReplaceObject()
     {
-		if(Item_idx > 0)
-        {
-			Destroy(objectsToPlace[Item_idx-1]);
-			Instantiate(objectsToPlace[Item_idx], placementPose.position, placementPose.rotation);
-        }
-    }
+		if (Item_idx > 1)
+		{
+			Destroy(spawnedObject);
+		}
+		spawnedObject = Instantiate(objectsToPlace[Item_idx-1], placementPose.position, placementPose.rotation);
+
+	}
 }
