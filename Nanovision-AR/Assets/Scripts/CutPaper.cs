@@ -10,15 +10,15 @@ public class CutPaper : MonoBehaviour
 {
 	// To handles raycasts
 	private ARRaycastManager aRRaycastManager;  
-	private Pose placementPose;
+	private static Pose placementPose;
 	private bool placementPoseIsValid = false;
 	public static bool objectIsPlaced = false;
 	static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
 	[SerializeField] GameObject placementIndicator;
-	[SerializeField]  List<GameObject> objectsToPlace = new List<GameObject>();
-	private int rangeObjectList;
-	private GameObject spawnedObject;
+	public  List<GameObject> objectsToPlace = new List<GameObject>();
+	private static int rangeObjectList;
+	private static GameObject spawnedObject;
 
 	public static int numCuts;
 	private int item_idx;
@@ -85,7 +85,6 @@ public class CutPaper : MonoBehaviour
     {
 		if (placementPoseIsValid)
 		{
-			placementIndicator.SetActive(false);
 			Item_idx += 1;
 			numCuts += 1;
 		}
@@ -93,11 +92,15 @@ public class CutPaper : MonoBehaviour
 
 	public void ReplaceObject()
     {
-		if (Item_idx > 1)
+		if (Item_idx > 0)
 		{
 			Destroy(spawnedObject);
 		}
-		spawnedObject = Instantiate(objectsToPlace[Item_idx-1], placementPose.position, placementPose.rotation);
+		spawnedObject = Instantiate(objectsToPlace[Item_idx], placementPose.position, placementPose.rotation);
+	}
 
+	public void SpawnFirstObject()
+    {
+		spawnedObject = Instantiate(objectsToPlace[Item_idx], placementPose.position, placementPose.rotation);
 	}
 }

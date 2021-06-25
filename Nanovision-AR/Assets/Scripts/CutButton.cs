@@ -11,7 +11,7 @@ public class CutButton : MonoBehaviour
     void Start()
     {
         cutButton.SetActive(false);
-        cutButton.SetActive(true);
+        startButton.SetActive(true);
     }
 
     void Update()
