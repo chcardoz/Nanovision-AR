@@ -78,4 +78,6 @@ public class FollowPlayer : MonoBehaviour
             Instantiate(followingObjects[i], position, placementPose.rotation);
         }
     }
+   
 }
+

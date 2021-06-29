@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/M1A2_ObjectRings.unity
+    path: Assets/Prefabs/Scenes/M1A2_ObjectRings.unity
     guid: e7d65f6c9b7a48e49bdf63e2eb9205d7
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 86b84d909a888e44da7edc944e0ea02e, type: 2}
