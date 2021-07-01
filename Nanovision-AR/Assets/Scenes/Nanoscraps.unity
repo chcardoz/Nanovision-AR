@@ -340,7 +340,7 @@ Transform:
   m_GameObject: {fileID: 516672845}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2014867060}
   m_RootOrder: 0
@@ -1274,8 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05ea7ef5e9a64071a02a9e4859232d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 60
-  placementIndicator: {fileID: 2014867059}
+  totalTime: 20
 --- !u!114 &1081020573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,7 +1692,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1813736476}
         m_TargetAssemblyTypeName: CutPaper, Assembly-CSharp
-        m_MethodName: SpawnFirstObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1826,7 +1825,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1813736476}
         m_TargetAssemblyTypeName: CutPaper, Assembly-CSharp
-        m_MethodName: Cut
+        m_MethodName: Shrink
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1904,17 +1903,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 2014867059}
-  objectsToPlace:
-  - {fileID: 6314822104424582017, guid: 0cc4506d5315862478d73579e10c888d, type: 3}
-  - {fileID: 5159760614283459372, guid: 1f9b56223969c894a896e87914f94e84, type: 3}
-  - {fileID: 5599037262527396184, guid: 1e57569ab173845d28d18947d21cadaf, type: 3}
-  - {fileID: 874766212573400241, guid: 81f3696dc779e4c4084d5fdebda9af0e, type: 3}
-  - {fileID: 3156982947216544659, guid: fcec35c7effe54d4e9a93a2215841dd3, type: 3}
-  - {fileID: 5708589317683326018, guid: 74ce7d54f7cb2904fa069268b3a58ea0, type: 3}
-  - {fileID: 5159435160580433568, guid: 59d978ad48551c74e8301ff19b995be7, type: 3}
-  - {fileID: 5883826991015213340, guid: 6585d75761500874c959e741ae02b3b7, type: 3}
-  - {fileID: 2112665628857522347, guid: cbd46484b1d286a4683b465ae9d3ae74, type: 3}
-  - {fileID: 8363104656829522311, guid: 4873ce49006360d4eb6653d541129a3e, type: 3}
+  objectToPlace: {fileID: 6453825983060758334, guid: 5c5c8584601e949b1bde5a63e30a11cd, type: 3}
+  shrinkFactor: 0.87
 --- !u!4 &1813736477
 Transform:
   m_ObjectHideFlags: 0

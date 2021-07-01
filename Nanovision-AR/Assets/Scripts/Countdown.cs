@@ -9,7 +9,6 @@ public class Countdown : MonoBehaviour
     private Scrollbar scrollbar;
     private  bool timerStarted = false;
     public static bool timerEnded = false;
-    [SerializeField] GameObject placementIndicator;
 
     private float timeRemaining;
     public float TimeRemaining
@@ -46,7 +45,5 @@ public class Countdown : MonoBehaviour
     public void StartTimer()
     {
         timerStarted = true;
-        CutPaper.objectIsPlaced = true;
-        placementIndicator.SetActive(false);
     }
 }

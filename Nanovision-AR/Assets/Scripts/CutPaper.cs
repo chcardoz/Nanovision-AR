@@ -8,38 +8,21 @@ using System;
 
 public class CutPaper : MonoBehaviour
 {
-	// To handles raycasts
+	[SerializeField] GameObject placementIndicator;
+	[SerializeField] GameObject objectToPlace;
+	[SerializeField] float shrinkFactor;
+	private GameObject spawnedObject;
+
 	private ARRaycastManager aRRaycastManager;  
-	private static Pose placementPose;
+	private Pose placementPose;
 	private bool placementPoseIsValid = false;
 	public static bool objectIsPlaced = false;
 	static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
-
-	[SerializeField] GameObject placementIndicator;
-	public  List<GameObject> objectsToPlace = new List<GameObject>();
-	private static int rangeObjectList;
-	private static GameObject spawnedObject;
-
-	public static int numCuts;
-	private int item_idx;
-	public int Item_idx
-    {
-		get { return item_idx;  }
-		set
-        {
-			item_idx = value;
-			if(item_idx < rangeObjectList)
-            {
-				ReplaceObject();
-			}
-        }
-    }
+	public static int numShrinks;
 
 	void Start()
 	{
-		Item_idx = 0;
-		numCuts = 0;
-		rangeObjectList = objectsToPlace.Count;
+		numShrinks = 0;
 		aRRaycastManager = FindObjectOfType<ARRaycastManager>();
 	}
 
@@ -81,26 +64,23 @@ public class CutPaper : MonoBehaviour
 	}
 
 
-	public void Cut()
+	public void Shrink()
     {
 		if (placementPoseIsValid)
 		{
-			Item_idx += 1;
-			numCuts += 1;
+			spawnedObject.transform.localScale *= shrinkFactor;
+			numShrinks += 1;
 		}
 	}
 
-	public void ReplaceObject()
+	public void SpawnObject()
     {
-		if (Item_idx > 0)
-		{
-			Destroy(spawnedObject);
-		}
-		spawnedObject = Instantiate(objectsToPlace[Item_idx], placementPose.position, placementPose.rotation);
-	}
+		if(placementPoseIsValid)
+        {
+			spawnedObject = Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
+			placementIndicator.SetActive(false);
+			objectIsPlaced = true;
+        }
+    }
 
-	public void SpawnFirstObject()
-    {
-		spawnedObject = Instantiate(objectsToPlace[Item_idx], placementPose.position, placementPose.rotation);
-	}
 }
