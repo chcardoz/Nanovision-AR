@@ -12,11 +12,8 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField] GameObject placementIndicator;
     [SerializeField] float offset;
 
-
-    //Raycast stuff
     private ARRaycastManager aRRaycastManager;
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
-
     private bool objectPlacedOnce = false;
     private bool placementPoseIsValid = false;
     private Pose placementPose;
