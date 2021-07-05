@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 244015110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 906965025}
   m_Father: {fileID: 0}
@@ -185,11 +185,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingObjects:
   - {fileID: 6779341813066005506, guid: e130f1e560652456b9afb3c5bd478c5a, type: 3}
-  - {fileID: 2081805151529982093, guid: d9b8d6060b8904162813adc338eb4414, type: 3}
+  - {fileID: 869294006931061120, guid: 5ba7061a8ff8f43dcb83a9c8e8e9cb80, type: 3}
+  - {fileID: 692250169890170385, guid: b8d3426a5fbd0492c95163451f9fe71e, type: 3}
+  - {fileID: 1367574070754288860, guid: ee42d667e359e4072b46b4dbda31d0c8, type: 3}
+  - {fileID: 2926072985448557581, guid: f3c2fcc37a029488285e013dd3dffd76, type: 3}
   - {fileID: 2950841858908397419, guid: 1d9be63abd0b640c08d251206fd2da72, type: 3}
   - {fileID: 4894467486477783970, guid: ed770d665e87f402a995f0d84c5f533b, type: 3}
+  - {fileID: 6942230813672470935, guid: c06465a4b829040f1bb4ee13802717dd, type: 3}
+  - {fileID: 9130996498649270088, guid: 6f9c79400d43e0842bcfc2955f2ff809, type: 3}
   placementIndicator: {fileID: 244015110}
-  offset: 1
+  offset: 0.07
 --- !u!4 &335668039
 Transform:
   m_ObjectHideFlags: 0
@@ -247,7 +252,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 20
   field of view: 60
   orthographic: 0
@@ -520,7 +525,7 @@ Transform:
   m_GameObject: {fileID: 1091204776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 424434369}
   m_Father: {fileID: 0}
@@ -551,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 5453736253977811973, guid: b4e81072311734995aa58ab025eaae00, type: 3}
+  m_PlanePrefab: {fileID: 0}
   m_DetectionMode: -1
 --- !u!1 &1265461691
 GameObject:

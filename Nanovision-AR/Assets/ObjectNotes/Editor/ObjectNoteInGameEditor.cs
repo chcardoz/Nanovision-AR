@@ -159,7 +159,7 @@ public class ObjectNoteInGameEditor : Editor
             }
             GUILayout.Label("Font size:", GUILayout.Width(140));
             EditorGUI.BeginChangeCheck();
-            int size = EditorGUILayout.IntSlider(note.FontSize, 6, 20, GUILayout.Width(150));
+            int size = EditorGUILayout.IntSlider(note.FontSize, 6, 100, GUILayout.Width(150));
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(note, "Changed Object Note Font Size");
