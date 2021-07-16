@@ -5,7 +5,6 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
 
-
     public Material red;
     private GameObject[] getCount;
     public float cubeSize = 0.125f;
@@ -25,8 +24,8 @@ public class Explosion : MonoBehaviour
     void Start()
     {
 
-        getCount = GameObject.FindGameObjectsWithTag("Cube"); // get count of cubes spawned
-        int count = getCount.Length;
+//        getCount = GameObject.FindGameObjectsWithTag("Cube"); // get count of cubes spawned
+//        int count = getCount.Length;
         cubesPivotDistance = cubeSize * cubesInRow / 2;
 
         cubesPivot = new Vector3(cubesPivotDistance,cubesPivotDistance,cubesPivotDistance);
@@ -63,7 +62,12 @@ public class Explosion : MonoBehaviour
             }
         }
     }
-
+    /*public int RandomNumber(int min,int max)  
+    {  
+        return _random.Next(0, 255);  
+    }  
+    */
+    
     void createCube(int x,int y,int z){
         GameObject cube;
 
@@ -75,10 +79,16 @@ public class Explosion : MonoBehaviour
         cube.AddComponent<Rigidbody>();
         cube.GetComponent<Rigidbody>().mass = cubeSize;
 
-       
-        //cube.GetComponent<Renderer>().material.color = new Color(255,50,0);
+        System.Random random = new System.Random();
+
+        //int num = random.Next(255); 
+
+        cube.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f); // commented lines of code is me failing lol
+
+
+        //cube.GetComponent<Renderer>().material.color = new Color(random.Next(255),random.Next(255),random.Next(100));
         //cube.GetComponent<Renderer>().material.color = new Color(240,38,20);
-        cube.transform.GetComponent<Renderer>().material = gameObject.GetComponent<Renderer>().material;
+        //cube.transform.GetComponent<Renderer>().material = gameObject.GetComponent<Renderer>().material;
         // var randomColor = rndColor[new Random().Next(0,rndColor.Length)]
     }
 }
