@@ -5,21 +5,28 @@ using UnityEngine;
 public class CutButton : MonoBehaviour
 {
 
-    [SerializeField] GameObject cutButton;
+    [SerializeField] GameObject shrinkButton;
     [SerializeField] GameObject startButton;
+    [SerializeField] GameObject spawnButton;
 
     void Start()
     {
-        cutButton.SetActive(false);
-        startButton.SetActive(true);
+        shrinkButton.SetActive(false);
+        startButton.SetActive(false);
+        spawnButton.SetActive(true);
     }
 
     void Update()
     {
-        if(CutPaper.objectIsPlaced)
+        if (ShrinkPaper.objectIsPlaced)
         {
-            cutButton.SetActive(true);
-            startButton.SetActive(false);
+            startButton.SetActive(true);
+            spawnButton.SetActive(false);
+            if (Countdown.timerStarted)
+            {
+                shrinkButton.SetActive(true);
+                startButton.SetActive(false);
+            }
         }
     }
 }

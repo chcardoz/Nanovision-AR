@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour
 {
+    private Text timerText;
     [SerializeField] float totalTime;
-    private Scrollbar scrollbar;
-    private  bool timerStarted = false;
+    public static bool timerStarted = false;
     public static bool timerEnded = false;
 
     private float timeRemaining;
@@ -16,17 +16,16 @@ public class Countdown : MonoBehaviour
         get { return timeRemaining; }
         set {
             timeRemaining = value;
-            scrollbar.size = timeRemaining / totalTime;
+            timerText.text = timeRemaining.ToString("0"); 
         }
     }
 
     void Start()
     {
-        scrollbar = GetComponent<Scrollbar>();
+        timerText = GetComponent<Text>();
         TimeRemaining = totalTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (timerStarted)

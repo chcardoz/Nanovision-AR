@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
-using System;
 using UnityEngine.XR.ARSubsystems;
 
 public class FollowPlayer : MonoBehaviour
@@ -11,7 +9,9 @@ public class FollowPlayer : MonoBehaviour
 	[SerializeField] List<GameObject> followingObjects = new List<GameObject>();
     [SerializeField] GameObject placementIndicator;
     [SerializeField] float offset;
+    public LeanTweenType easeType;
 
+    private List<GameObject> spawnedObjects = new List<GameObject>();
     private ARRaycastManager aRRaycastManager;
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
     private bool objectPlacedOnce = false;
@@ -29,12 +29,6 @@ public class FollowPlayer : MonoBehaviour
         {
             UpdatePlacementPose();
             UpdatePlacementIndicator();
-            if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-            {
-                PlaceObject();
-                objectPlacedOnce = true;
-                placementIndicator.SetActive(false);
-            }
         }
     }
 
@@ -66,13 +60,38 @@ public class FollowPlayer : MonoBehaviour
         }
     }
 
-    private void PlaceObject()
+    public void PlaceObject()
     {
         int numObjects = followingObjects.Count;
-        for(int i =0; i<numObjects; i++)
+        if (placementPoseIsValid)
         {
-            Vector3 position = new Vector3(placementPose.position.x + offset * i, placementPose.position.y, placementPose.position.z);
-            Instantiate(followingObjects[i], position, placementPose.rotation);
+            objectPlacedOnce = true;
+            placementIndicator.SetActive(false);
+            for (int i = 0; i < numObjects; i++)
+            {
+                Vector3 position = new Vector3(placementPose.position.x + offset * i, placementPose.position.y, placementPose.position.z);
+                GameObject newGO = (GameObject)Instantiate(followingObjects[i], position, placementPose.rotation);
+                spawnedObjects.Add(newGO);
+            }
+        }
+    }
+
+
+    public void ScaleUpObjects()
+    {
+        int numObjects = spawnedObjects.Count;
+        for(int i=0; i<numObjects; i++)
+        {
+            if(i < 3)
+            {
+                Destroy(spawnedObjects[i]);
+            }
+            else
+            {
+                Transform objTransform = spawnedObjects[i].transform;
+                Vector3 newScale = objTransform.localScale * 1000f;
+                LeanTween.scale(spawnedObjects[i], newScale, 3f).setEase(easeType);
+            }
         }
     }
    

@@ -5,9 +5,30 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Nanoscraps.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Home Screen.unity
+    guid: b3bd1b4f8a5184ae1b75bb876b863304
+  - enabled: 1
+    path: Assets/Scenes/M1A1_Introduction.unity
+    guid: 468d90dc4d1584ca0a8b92e7e0309b20
+  - enabled: 1
+    path: Assets/Scenes/M1A1_Nanoscraps.unity
+    guid: e6454dd809ba34d78a83b71388fe194f
+  - enabled: 1
+    path: Assets/Scenes/M1A2_Introduction.unity
+    guid: 7e383a96063974ec0a3e6f3574d7f22f
+  - enabled: 1
+    path: Assets/Scenes/M1A2_ObjectRings.unity
+    guid: 07571c3181d964ff18bf135f0ed8826c
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 0f1956a367c2145a691c504363a8ff4c
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 50c8f8e0f647c44658fd14809b668e2b
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f59d65aff61fc79488186795d576dfb4, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: af84911c51955f54ebba18eea71178d7, type: 2}

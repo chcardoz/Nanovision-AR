@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2950841858908397419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0000001, y: 0.0000001, z: 0.0000001}
+  m_LocalScale: {x: 0.000001, y: 0.000001, z: 0.000001}
   m_Children:
   - {fileID: 3154942613839934601}
   m_Father: {fileID: 0}
@@ -125,8 +125,8 @@ MonoBehaviour:
   Open: 0
   Color: {r: 0, g: 0, b: 0, a: 1}
   FontSize: 55
-  Bold: 1
-  Size: {x: 338, y: 76}
+  Bold: 0
+  Size: {x: 326, y: 76}
   Style:
     m_Name: box
     m_Normal:
@@ -184,7 +184,7 @@ MonoBehaviour:
       m_Bottom: 0
     m_Font: {fileID: 0}
     m_FontSize: 55
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 1
     m_RichText: 0
