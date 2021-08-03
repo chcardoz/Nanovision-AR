@@ -209,9 +209,9 @@ public class MagnifyingGlass : MonoBehaviour
 		GUI.Box (new Rect (10, 130, 80, 25), "Amount");
 		m_Amount[m_GlassIndex] = GUI.HorizontalSlider (m_GUIRects[3], m_Amount[m_GlassIndex], 0f, 1f);
 		GUI.Box (new Rect (10, 160, 80, 25), "Radial X");
-		m_RadiusX[m_GlassIndex] = GUI.HorizontalSlider (m_GUIRects[4], m_RadiusX[m_GlassIndex], 0f, 0.7f);
+		m_RadiusX[m_GlassIndex] = GUI.HorizontalSlider (m_GUIRects[4], m_RadiusX[m_GlassIndex], 0f, 1f);
 		GUI.Box (new Rect (10, 190, 80, 25), "Radial Y");
-		m_RadiusY[m_GlassIndex] = GUI.HorizontalSlider (m_GUIRects[5], m_RadiusY[m_GlassIndex], 0f, 0.7f);
+		m_RadiusY[m_GlassIndex] = GUI.HorizontalSlider (m_GUIRects[5], m_RadiusY[m_GlassIndex], 0f, .5f);
 		if (m_UseComplicated)
 		{
 			GUI.Box (new Rect (10, 220, 80, 25), "Inner");

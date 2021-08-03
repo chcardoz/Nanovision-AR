@@ -16,13 +16,17 @@ public class Magnification : MonoBehaviour
 	bool m_UseMultiple = false;
 	int m_GlassIndex = 0;
 
+	/// <summary>
+    /// Housekeeping and caching variables which put the magnification glass in the center of screen. 
+    /// </summary>
 	void Start()
 	{
 		QualitySettings.antiAliasing = 8;
 		m_MouseX = m_MouseY = 0.5f;
-		m_Mat.SetVector("_SimpleCenterRadial1", new Vector4(0.3f, 0.2f, RadiusX, RadiusY));
+		m_Mat.SetVector("_SimpleCenterRadial1", new Vector4(m_MouseX, m_MouseY, RadiusX, RadiusY));
 		m_Mat.SetFloat("_SimpleAmount1", Amount);
 	}
+
 	void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		// select which pass should we use
@@ -64,13 +68,13 @@ public class Magnification : MonoBehaviour
 
 	public void increaseMagAmount()
     {
-		float increasedVal = Amount + 0.001f;
+		float increasedVal = Amount + 0.01f;
 		Amount = Mathf.Clamp(increasedVal, 0, 1);
     }
 
 	public void decreaseMagAmount()
     {
-		float increasedVal = Amount - 0.001f;
+		float increasedVal = Amount - 0.01f;
 		Amount = Mathf.Clamp(increasedVal, 0, 1);
 	}
 

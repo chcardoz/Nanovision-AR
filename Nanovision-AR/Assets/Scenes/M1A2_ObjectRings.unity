@@ -643,7 +643,7 @@ Transform:
   m_GameObject: {fileID: 244015110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 906965025}
   m_Father: {fileID: 0}
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Mat: {fileID: 2100000, guid: 10264562b2cab7940b87dd0d02cbc9ee, type: 2}
   Amount: 0.7
-  RadiusX: 0.8
+  RadiusX: 1
   RadiusY: 0.5
   ComplicatedRadiusInner: 0.3
   ComplicatedRadiusOuter: 0.6

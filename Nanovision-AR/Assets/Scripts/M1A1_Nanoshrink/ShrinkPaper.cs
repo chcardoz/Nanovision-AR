@@ -10,19 +10,28 @@ public class ShrinkPaper : MonoBehaviour
 	[SerializeField] float shrinkFactor;
 	private GameObject spawnedObject;
 
+	/// <summary>
+    /// Variables required to make AR work
+    /// </summary>
 	private ARRaycastManager aRRaycastManager;  
 	private Pose placementPose;
-	private bool placementPoseIsValid = false;
-	public static bool objectIsPlaced = false;
+	private bool placementPoseIsValid;
+	public static bool objectIsPlaced;
 	static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 	public static float numShrinks;
 
 	void Start()
 	{
 		numShrinks = 0;
+		objectIsPlaced = false;
+		placementPoseIsValid = false; 
 		aRRaycastManager = FindObjectOfType<ARRaycastManager>();
+		Destroy(spawnedObject);
 	}
 
+	/// <summary>
+    /// If the object is not spawned, updates the placement pose and indicator every frame.
+    /// </summary>
 	void Update()
 	{
         if (!objectIsPlaced)
@@ -32,6 +41,9 @@ public class ShrinkPaper : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+    /// Updates the placement indicators's position and rotation if the a placement pose is valid
+    /// </summary>
 	private void UpdatePlacementIndicator()
 	{
 		if (placementPoseIsValid)
@@ -45,6 +57,10 @@ public class ShrinkPaper : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+    /// Updates the placement pose by casting rays from the center of screen. When raycasts hit a valid plane in AR, sets placement pose to true and sets placement position and rotation
+    /// to the position and rotation of the plane. 
+    /// </summary>
 	private void UpdatePlacementPose()
 	{
 		var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
@@ -60,7 +76,9 @@ public class ShrinkPaper : MonoBehaviour
 		}
 	}
 
-
+	/// <summary>
+    /// If the placement pose is valid, reduces the scale of the spawned object by the scale factor
+    /// </summary>
 	public void Shrink()
     {
         if (placementPoseIsValid)
@@ -70,6 +88,9 @@ public class ShrinkPaper : MonoBehaviour
         }
     }
 
+	/// <summary>
+    /// If the placement pose is valid, spawns the object in the placement position and rotation. 
+    /// </summary>
 	public void SpawnObject()
     {
 		if(placementPoseIsValid)

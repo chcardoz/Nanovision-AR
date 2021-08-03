@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour
 {
-    private Text timerText;
     [SerializeField] float totalTime;
-    public static bool timerStarted = false;
-    public static bool timerEnded = false;
-
+    public static bool timerStarted;
+    public static bool timerEnded;
+    private Text timerText;
     private float timeRemaining;
     public float TimeRemaining
     {
@@ -24,6 +23,8 @@ public class Countdown : MonoBehaviour
     {
         timerText = GetComponent<Text>();
         TimeRemaining = totalTime;
+        timerEnded = false;
+        timerStarted = false;
     }
 
     void Update()

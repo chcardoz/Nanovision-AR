@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/M1A2_ObjectRings.unity
     guid: 07571c3181d964ff18bf135f0ed8826c
   - enabled: 1
+    path: Assets/Scenes/M2A2_Introduction.unity
+    guid: cdd611e2d42374be9ba4d8afba6ccea3
+  - enabled: 1
+    path: Assets/Scenes/M2A2_AssembleCubes.unity
+    guid: 7a57441999802472fb340a583a7e5cc4
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 0f1956a367c2145a691c504363a8ff4c
   - enabled: 1
